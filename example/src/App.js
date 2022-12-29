@@ -1,12 +1,27 @@
-import React from 'react'
-import { useMyHook } from 'mounted-components'
+import React from "react";
+import { useMount, MountRoot } from "mount-components";
 
-const App = () => {
-  const example = useMyHook()
+const Modal = ({ close, content }) => {
   return (
     <div>
-      {example}
+      {content}
+      <button onClick={close}>close</button>
     </div>
-  )
-}
-export default App
+  );
+};
+
+const App = () => {
+  const { open } = useMount();
+  function onClick(e) {
+    open(Modal, {
+      content: "This is a modal!",
+    });
+  }
+  return (
+    <div>
+      <button onClick={onClick}>Open</button>
+      <MountRoot />
+    </div>
+  );
+};
+export default App;

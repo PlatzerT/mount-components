@@ -13,22 +13,35 @@ npm install --save mounted-components
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React from "react";
+import { useMount, MountRoot } from "mount-components";
 
-import { useMyHook } from 'mounted-components'
-
-const Example = () => {
-  const example = useMyHook()
+const Modal = ({ close, content }) => {
   return (
-    <div>{example}</div>
-  )
-}
+    <div>
+      {content}
+      <button onClick={close}>close</button>
+    </div>
+  );
+};
+
+const App = () => {
+  const { open } = useMount();
+  function onClick(e) {
+    open(Modal, {
+      content: "This is a modal!",
+    });
+  }
+  return (
+    <div>
+      <button onClick={onClick}>Open</button>
+      <MountRoot />
+    </div>
+  );
+};
+export default App;
 ```
 
 ## License
 
 MIT © [PlatzerT](https://github.com/PlatzerT)
-
----
-
-This hook is created using [create-react-hook](https://github.com/hermanya/create-react-hook).
