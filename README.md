@@ -1,4 +1,4 @@
-# mounted-components
+# mount-components
 
 > Programmatically mounting and displaying components.
 
